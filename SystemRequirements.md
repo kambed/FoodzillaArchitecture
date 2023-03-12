@@ -78,6 +78,8 @@ left to right direction
 actor "Logged in user" AS loggedUser
 
 rectangle Application {
+    usecase "Logout" as logout
+    
     usecase "Search recipes" as search
     usecase "Filter recipes" as filter
     usecase "View recipe" as view
@@ -91,18 +93,21 @@ rectangle Application {
     usecase "Edit profile" as editProfile
     usecase "Assign tags to profile" as assignTags
     
+    usecase "Recently viewed recipes" as recentlyViewed
+    
     search <.. filter: <<extend>>
     view <.. addFavourite: <<extend>>
     search <.. saveSearch: <<extend>>
     
     editProfile <.. assignTags: <<extend>>
 }
-
+loggedUser --> logout
 loggedUser --> search
 loggedUser --> view
 loggedUser --> favourite
 loggedUser --> savedSearches
 loggedUser --> editProfile
+loggedUser --> recentlyViewed
 @enduml
 ```
 ![](media/LoggedInUserUseCases.png)
