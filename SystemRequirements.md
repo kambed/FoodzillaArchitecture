@@ -88,15 +88,21 @@ rectangle Application {
     usecase "Display saved searches" as savedSearches
     usecase "Save search" as saveSearch
     
+    usecase "Edit profile" as editProfile
+    usecase "Assign tags to profile" as assignTags
+    
     search <.. filter: <<extend>>
     view <.. addFavourite: <<extend>>
     search <.. saveSearch: <<extend>>
+    
+    editProfile <.. assignTags: <<extend>>
 }
 
 loggedUser --> search
 loggedUser --> view
 loggedUser --> favourite
 loggedUser --> savedSearches
+loggedUser --> editProfile
 @enduml
 ```
 ![](media/LoggedInUserUseCases.png)
