@@ -39,3 +39,64 @@
     - Android Frontend Application
 - Swift
     - iOS Frontend Application
+
+## Use cases diagram
+
+### Not logged in user
+
+```plantuml
+@startuml
+left to right direction
+
+actor "Not logged in user" AS user
+
+rectangle Application {
+    usecase "Search recipes" as search
+    usecase "Filter recipes" as filter
+    usecase "View recipe" as view
+    
+    usecase "Login" as login
+    usecase "Register" as register
+    
+    search <.. filter: <<extend>>
+}
+
+user --> search
+user --> view
+user --> login
+user --> register
+@enduml
+```
+![](media/NotLoggedInUserUseCases.png)
+
+### Logged in user
+
+```plantuml
+@startuml
+left to right direction
+
+actor "Logged in user" AS loggedUser
+
+rectangle Application {
+    usecase "Search recipes" as search
+    usecase "Filter recipes" as filter
+    usecase "View recipe" as view
+    
+    usecase "Display favourite recipes" as favourite
+    usecase "Add recipe to favourites" as addFavourite
+    
+    usecase "Display saved searches" as savedSearches
+    usecase "Save search" as saveSearch
+    
+    search <.. filter: <<extend>>
+    view <.. addFavourite: <<extend>>
+    search <.. saveSearch: <<extend>>
+}
+
+loggedUser --> search
+loggedUser --> view
+loggedUser --> favourite
+loggedUser --> savedSearches
+@enduml
+```
+![](media/LoggedInUserUseCases.png)
