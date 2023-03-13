@@ -17,10 +17,13 @@
     - Number of steps (range)
     - Number of ingredients (multiselect)
     - Ingredients (multiselect)
+    - Reviews (range)
 - Search result will be paging
 - Logged in user have extra features:
     - favourite recipes
     - saved searches
+    - add recipe to favourites
+    - edit profile
 - Integrations:
     - Translator
     - Chat GPT – resume of your search parameters and results
@@ -95,8 +98,12 @@ rectangle Application {
     
     usecase "Recently viewed recipes" as recentlyViewed
     
+    usecase "Display user profile" as userProfile
+    usecase "Add review to recipe" as addReview
+    
     search <.. filter: <<extend>>
     view <.. addFavourite: <<extend>>
+    view <.. addReview: <<extend>>
     search <.. saveSearch: <<extend>>
     
     editProfile <.. assignTags: <<extend>>
@@ -108,6 +115,7 @@ loggedUser --> favourite
 loggedUser --> savedSearches
 loggedUser --> editProfile
 loggedUser --> recentlyViewed
+loggedUser --> userProfile
 @enduml
 ```
 ![](media/LoggedInUserUseCases.png)
