@@ -31,10 +31,10 @@
 
 ## Non-functional
 
-- Python or Database
+- Database
     - for data set operations
 - Java
-    - call database/Python
+    - call database
     - searching and filtering
     - create API for frontend applications (GraphQL to communication)
     - external translation API calls
