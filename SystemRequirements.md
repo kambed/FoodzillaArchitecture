@@ -24,6 +24,7 @@
     - saved searches
     - add recipe to favourites
     - edit profile
+    - create recipe
 - Integrations:
     - Translator
     - Chat GPT – resume of your search parameters and results
