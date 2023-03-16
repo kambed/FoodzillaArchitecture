@@ -59,11 +59,9 @@ System_Boundary(c1, "Application") {
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
 }
 
-Container(imageGenerationApi, "Image generation API", $sprite="server")
-
-Container(chatGptApi, "Chat GPT API", $sprite="server")
-
-Container(translatorApi, "Translator API", $sprite="server")
+Container_Ext(imageGenerationApi, "Image generation API", $sprite="server")
+Container_Ext(chatGptApi, "Chat GPT API", $sprite="server")
+Container_Ext(translatorApi, "Translator API", $sprite="server")
 
 Rel(user, frontendAndroid, "Uses", "https")
 Rel(user, frontendIos, "Uses", "https")
