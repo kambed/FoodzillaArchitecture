@@ -25,8 +25,8 @@
     - add recipe to favourites
     - edit profile
     - create recipe
+- Recipes recommendations
 - Integrations:
-    - Translator
     - Chat GPT – resume of your search parameters and results
     - Image generation - https://github.com/lucidrains/big-sleep or https://deepai.org/
 
@@ -91,6 +91,8 @@ rectangle Application {
     usecase "Display favourite recipes" as favourite
     usecase "Add recipe to favourites" as addFavourite
     
+    usecase "Display recommended recipes" as recommended
+    
     usecase "Display saved searches" as savedSearches
     usecase "Save search" as saveSearch
     
@@ -113,6 +115,7 @@ loggedUser --> logout
 loggedUser --> search
 loggedUser --> view
 loggedUser --> favourite
+loggedUser --> recommended
 loggedUser --> savedSearches
 loggedUser --> editProfile
 loggedUser --> recentlyViewed

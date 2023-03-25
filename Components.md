@@ -11,9 +11,6 @@ node "System server" <<device>> {
     component "Backend" as backend
     component "Database" as database
 }
-node "Translation service server" <<device>> {
-    component "Translation service" as translator
-}
 node "Chat GPT service server" <<device>> {
     component "Chat GPT" as chatGpt
 }
@@ -25,7 +22,6 @@ frontendAndroid -(0- backend: GraphQL
 frontendIos -(0- backend: GraphQL
 
 backend -(0- database :SQL
-backend --(0- translator :REST
 backend --(0- chatGpt: REST
 backend -(0- imageGeneration: REST
 @enduml
@@ -45,6 +41,7 @@ backend -(0- imageGeneration: REST
 !include DEVICONS2/mysql.puml
 !include DEVICONS2/kotlin.puml
 !include DEVICONS2/swift.puml
+!include DEVICONS2/python.puml
 !include FONTAWESOME/users.puml
 !includeurl ICONURL/font-awesome/server.puml
 
@@ -57,11 +54,11 @@ System_Boundary(c1, "Application") {
     Container(frontendIos, "frontend", "ios", "iOS frontend", $sprite="swift")
     Container(backend, "Backend", "Java + Spring", "Business logic", $sprite="spring")
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
+    Container(recomendationApi, "Recomendation module", "Python + Flask", "Recomendation module", $sprite="python")
 }
 
 Container_Ext(imageGenerationApi, "Image generation API", $sprite="server")
 Container_Ext(chatGptApi, "Chat GPT API", $sprite="server")
-Container_Ext(translatorApi, "Translator API", $sprite="server")
 
 Rel(user, frontendAndroid, "Uses", "https")
 Rel(user, frontendIos, "Uses", "https")
@@ -69,11 +66,11 @@ Rel(frontendAndroid, backend, "API calls", "graphql")
 Rel(frontendIos, backend, "API calls", "graphql")
 Rel_R(db, backend, "Reads")
 Rel(backend, db, "Writes")
+Rel(backend, recomendationApi, "API calls", "REST")
 
 Rel_L(backend, imageGenerationApi, "API calls", "REST")
 Rel_R(backend, chatGptApi, "API calls", "REST")
-Rel(backend, translatorApi, "API calls", "REST")
 
 @enduml
 ```
-![](media/contextDiagram.png)
+![](media/containerDiagram.png)
