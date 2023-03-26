@@ -28,6 +28,7 @@ backend -(0- imageGeneration: REST
 ```
 ![](media/componentsDiagram.png)
 # Containers diagram
+
 ```plantuml
 @startuml
 
@@ -50,8 +51,8 @@ LAYOUT_WITH_LEGEND()
 Person(user, "Users", "System users", $sprite="users")
 
 System_Boundary(c1, "Application") {
-    Container(frontendAndroid, "frontend", "android", "Android frontend", $sprite="kotlin")
-    Container(frontendIos, "frontend", "ios", "iOS frontend", $sprite="swift")
+    Container(android, "Android", "android", "Android", $sprite="kotlin")
+    Container(iOS, "frontend", "ios", "iOS", $sprite="swift")
     Container(backend, "Backend", "Java + Spring", "Business logic", $sprite="spring")
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
     Container(recomendationApi, "Recomendation module", "Python + Flask", "Recomendation module", $sprite="python")
@@ -60,10 +61,10 @@ System_Boundary(c1, "Application") {
 Container_Ext(imageGenerationApi, "Image generation API", $sprite="server")
 Container_Ext(chatGptApi, "Chat GPT API", $sprite="server")
 
-Rel(user, frontendAndroid, "Uses", "https")
-Rel(user, frontendIos, "Uses", "https")
-Rel(frontendAndroid, backend, "API calls", "graphql")
-Rel(frontendIos, backend, "API calls", "graphql")
+Rel(user, android, "Uses", "https")
+Rel(user, iOS, "Uses", "https")
+Rel(android, backend, "API calls", "graphql")
+Rel(iOS, backend, "API calls", "graphql")
 Rel_R(db, backend, "Reads")
 Rel(backend, db, "Writes")
 Rel(backend, recomendationApi, "API calls", "REST")
