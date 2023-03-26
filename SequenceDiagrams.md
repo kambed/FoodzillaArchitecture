@@ -10,7 +10,26 @@ User -> Frontend: Do action
 activate Frontend
 Frontend -> Backend: Call to /graphql
 activate Backend
-Backend -> Backend: Process request
+opt Call to Database
+    ref over Backend
+        Database: Call to Database
+    end
+end
+opt Call to Chat GPT API
+    ref over Backend
+        Chat GPT API: Call to Chat GPT API
+    end
+end
+opt Call to Image generation API
+    ref over Backend
+        Image generation API: Call to Image generation API
+    end
+end
+opt Call to Recomendation API
+    ref over Backend
+        Recomendation API: Call to Recomendation API
+    end
+end
 return Response
 return Display data due to response
 @enduml
