@@ -31,8 +31,6 @@ backend -(0- imageGeneration: REST
 
 ```plantuml
 @startuml
-
-
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 !define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
