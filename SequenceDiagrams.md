@@ -68,12 +68,16 @@ return Image Reference
 ```plantuml
 @startuml
 participant Backend
+participant Hibernate
 participant Database
 
-Backend -> Database: SQL query
+Backend -> Hibernate: Request for data
+activate Hibernate
+Hibernate -> Database: SQL query
 activate Database
 Database -> Database: Process query
 return Response
+return Data
 @enduml
 ```
 ## Backend calls Recommendation Module
