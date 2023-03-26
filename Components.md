@@ -52,7 +52,7 @@ Person(user, "Users", "System users", $sprite="users")
 
 System_Boundary(c1, "Application") {
     Container(android, "Android", "android", "Android", $sprite="kotlin")
-    Container(iOS, "frontend", "ios", "iOS", $sprite="swift")
+    Container(iOS, "iOS", "ios", "iOS", $sprite="swift")
     Container(backend, "Backend", "Java + Spring", "Business logic", $sprite="spring")
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
     Container(recomendationApi, "Recomendation module", "Python + Flask", "Recomendation module", $sprite="python")
@@ -67,10 +67,10 @@ Rel(android, backend, "API calls", "graphql")
 Rel(iOS, backend, "API calls", "graphql")
 Rel_R(db, backend, "Reads")
 Rel(backend, db, "Writes")
-Rel(backend, recomendationApi, "API calls", "REST")
+Rel_R(backend, recomendationApi, "API calls", "REST")
 
-Rel_L(backend, imageGenerationApi, "API calls", "REST")
-Rel_R(backend, chatGptApi, "API calls", "REST")
+Rel_U(backend, imageGenerationApi, "API calls", "REST")
+Rel_L(backend, chatGptApi, "API calls", "REST")
 
 @enduml
 ```
