@@ -15,3 +15,4 @@ Designed with [PlantUML](https://plantuml.com/)
 
 1. [System requirements](SystemRequirements.md)
 2. [Components](Components.md)
+3. [Sequence diagrams](SequenceDiagrams.md)
