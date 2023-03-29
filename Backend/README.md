@@ -26,9 +26,6 @@ Container_Boundary(c3, Backend) {
     Component(beGraphQl,"Backend API", "GraphQL", "Backend", "graphql")
     Component(beHibernate,"Hibernate", "Hibernate", "Backend", "hibernate")
 }
-Container_Boundary(c4, Recommendation module) {
-    Component_Ext(recommentationModule,"Communication with BE", "flask", "Recommendation module module to backend communication", "flask_original")
-}
 Container_Boundary(c5, Database) {
     Component_Ext(db,"Database", "MySQL", "Database", $sprite="mysql")
 }
@@ -47,7 +44,6 @@ Rel(beGraphQl, be, "Uses")
 Rel_L(be, beHibernate, "Uses")
 Rel_U(beHibernate, db, "SQL")
 
-Rel_L(be, recommentationModule, "REST")
 Rel(be, imageGenerationApi, "REST")
 Rel(be, chatGptApi, "REST")
 

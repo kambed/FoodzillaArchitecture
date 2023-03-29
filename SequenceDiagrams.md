@@ -25,11 +25,6 @@ opt Call to Image generation API
         Image generation API: Call to Image generation API
     end
 end
-opt Call to Recomendation API
-    ref over Backend
-        Recomendation API: Call to Recomendation API
-    end
-end
 return Response
 return Display data due to response
 @enduml
@@ -78,20 +73,5 @@ activate Database
 Database -> Database: Process query
 return Response
 return Data
-@enduml
-```
-## Backend calls Recommendation Module
-```plantuml
-@startuml
-participant AnyBackendClass << (C,#ADD1B2) >>
-participant RecommendationModuleCommunication  << (C,#ADD1B2) >>
-participant RecommendationModule
-
-AnyBackendClass -> RecommendationModuleCommunication: Call to RecommendationModule
-activate RecommendationModuleCommunication
-RecommendationModuleCommunication -> RecommendationModule: Call to RecommendationModule
-activate RecommendationModule
-return Response
-return Response
 @enduml
 ```

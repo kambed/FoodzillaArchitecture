@@ -53,7 +53,6 @@ System_Boundary(c1, "Application") {
     Container(iOS, "iOS", "ios", "iOS", $sprite="swift")
     Container(backend, "Backend", "Java + Spring", "Business logic", $sprite="spring")
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
-    Container(recomendationApi, "Recomendation module", "Python + Flask", "Recomendation module", $sprite="python")
 }
 
 Container_Ext(imageGenerationApi, "Image generation API", $sprite="server")
@@ -65,7 +64,6 @@ Rel(android, backend, "API calls", "graphql")
 Rel(iOS, backend, "API calls", "graphql")
 Rel_R(db, backend, "Reads")
 Rel(backend, db, "Writes")
-Rel_R(backend, recomendationApi, "API calls", "REST")
 
 Rel_U(backend, imageGenerationApi, "API calls", "REST")
 Rel_L(backend, chatGptApi, "API calls", "REST")
