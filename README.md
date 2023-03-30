@@ -14,4 +14,5 @@ Designed with [PlantUML](https://plantuml.com/)
 ## Table of Contents
 
 1. [System requirements](SystemRequirements.md)
-2. [Components](Components.md)
+2. [Components](Containers.md)
+3. [Sequence diagrams](SequenceDiagrams.md)
