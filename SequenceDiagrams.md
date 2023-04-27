@@ -25,6 +25,11 @@ opt Call to Image generation API
         Image generation API: Call to Image generation API
     end
 end
+opt Call to Recommendation service
+    ref over Backend
+        Recommendation service: Call to Recommendation service
+    end
+end
 return Response
 return Display data due to response
 @enduml
@@ -71,6 +76,44 @@ activate Hibernate
 Hibernate -> Database: SQL query
 activate Database
 Database -> Database: Process query
+return Response
+return Data
+@enduml
+```
+## Backend calls Recommendation service
+### Async request for recommendations
+```plantuml
+@startuml
+participant Frontend as fe
+participant Backend as be
+participant "Recommendation service" as recommend
+participant Database as db
+
+fe -> be: Register/Login/Add review
+activate be
+be --> fe: Response
+be -> recommend: Request for recommendation
+activate recommend
+recommend -> db: SQL query
+activate db
+return Response
+return Data
+be -> db: Save recommendation
+activate db
+return Response
+@enduml
+```
+### Get recommendations
+```plantuml
+@startuml
+participant Frontend as fe
+participant Backend as be
+participant Database as db
+
+fe -> be: Request for recommendations
+activate be
+be -> db: SQL query
+activate db
 return Response
 return Data
 @enduml
