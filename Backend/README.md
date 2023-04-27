@@ -35,6 +35,9 @@ Container_Boundary(c6, "Image generation API") {
 Container_Boundary(c7, Chat GPT API) {
     Component_Ext(chatGptApi, "Chat GPT API", $sprite="server")
 }
+Container_Boundary(c8, Recommendation module) {
+    Component_Ext(recommentationModule,"Communication with BE", "flask", "Recommendation module module to backend communication", "flask_original")
+}
 
 Rel(febecommunicationAndroid, beGraphQl, "GraphQL")
 Rel(febecommunicationiOS, beGraphQl, "GraphQL")
@@ -46,6 +49,8 @@ Rel_U(beHibernate, db, "SQL")
 
 Rel(be, imageGenerationApi, "REST")
 Rel(be, chatGptApi, "REST")
+
+Rel_L(be, recommentationModule, "REST")
 
 @enduml
 ```
