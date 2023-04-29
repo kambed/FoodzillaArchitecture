@@ -54,3 +54,4 @@ Rel_L(be, recommentationModule, "REST")
 
 @enduml
 ```
+![](media/componentsDiagram.png)

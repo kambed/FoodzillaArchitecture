@@ -30,3 +30,4 @@ Rel(ai, db, "SQL")
 
 @enduml
 ```
+![](media/componentsDiagram.png)
