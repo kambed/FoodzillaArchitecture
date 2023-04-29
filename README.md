@@ -14,5 +14,10 @@ Designed with [PlantUML](https://plantuml.com/)
 ## Table of Contents
 
 1. [System requirements](SystemRequirements.md)
-2. [Components](Containers.md)
-3. [Sequence diagrams](SequenceDiagrams.md)
+2. [C4 Containers](Containers.md)
+3. C4 Components
+    * [Backend](Backend)
+    * [Recommendation module](Recommendation)
+    * [Android](Android)
+    * [iOS](iOS)
+4. [Sequence diagrams](SequenceDiagrams.md)

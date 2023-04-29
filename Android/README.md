@@ -21,3 +21,4 @@ Rel(febecommunication, be, "API calls", "rest")
 
 @enduml
 ```
+![](media/componentsDiagram.png)
