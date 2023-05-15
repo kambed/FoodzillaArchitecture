@@ -7,11 +7,13 @@
 !define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 !define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
+!include media/rabbitmq.puml
 !include DEVICONS2/spring.puml
 !include DEVICONS2/mysql.puml
 !include DEVICONS2/kotlin.puml
 !include DEVICONS2/swift.puml
 !include DEVICONS2/python.puml
+!include DEVICONS2/redis.puml
 !include FONTAWESOME/users.puml
 !includeurl ICONURL/font-awesome/server.puml
 
@@ -25,6 +27,8 @@ System_Boundary(c1, "Application") {
     Container(backend, "Backend", "Java + Spring", "Business logic", $sprite="spring")
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
     Container(recomendationApi, "Recomendation module", "Python + Flask", "Recomendation module", $sprite="python")
+    Container(rabbitmq, "RabbitMQ", "RabbitMQ", "Message broker", $sprite="rabbit")
+    Container(redis, "Redis", "Redis", "Cache", $sprite="redis")
 }
 
 Container_Ext(imageGenerationApi, "Image generation API", $sprite="server")
@@ -37,6 +41,8 @@ Rel(iOS, backend, "API calls", "graphql")
 Rel_R(db, backend, "Reads")
 Rel(backend, db, "Writes")
 Rel_R(backend, recomendationApi, "API calls", "REST")
+Rel_U(backend, rabbitmq, "Message broker")
+Rel_U(backend, redis, "Cache")
 
 Rel_U(backend, imageGenerationApi, "API calls", "REST")
 Rel_L(backend, chatGptApi, "API calls", "REST")
