@@ -27,7 +27,7 @@ System_Boundary(c1, "Application") {
     Container(backend, "Backend", "Java + Spring", "Business logic", $sprite="spring")
     ContainerDb(db, "Database", "SQL", "Data storing", $sprite="mysql")
     Container(recomendationApi, "Recomendation module", "Python + Flask", "Recomendation module", $sprite="python")
-    Container(rabbitmq, "RabbitMQ", "RabbitMQ", "Message broker", $sprite="rabbit")
+    Container(rabbitmq, "RabbitMQ", "RabbitMQ", "Message broker", $sprite="rabbitmq")
     Container(redis, "Redis", "Redis", "Cache", $sprite="redis")
 }
 
