@@ -36,13 +36,20 @@ Container_Ext(chatGptApi, "Chat GPT API", $sprite="server")
 
 Rel(user, android, "Uses", "https")
 Rel(user, iOS, "Uses", "https")
+
 Rel(android, backend, "API calls", "graphql")
 Rel(iOS, backend, "API calls", "graphql")
-Rel_R(db, backend, "Reads")
-Rel(backend, db, "Writes")
+
+Rel_D(db, backend, "Reads")
+Rel_D(backend, db, "Writes")
+
 Rel_R(backend, recomendationApi, "API calls", "REST")
-Rel_U(backend, rabbitmq, "Message broker")
-Rel_U(backend, redis, "Cache")
+
+Rel_D(backend, rabbitmq, "Produce")
+Rel_D(rabbitmq, backend, "Consume")
+
+Rel_D(redis, backend, "Reads")
+Rel_D(backend, redis, "Writes")
 
 Rel_U(backend, imageGenerationApi, "API calls", "REST")
 Rel_L(backend, chatGptApi, "API calls", "REST")
