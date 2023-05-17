@@ -21,7 +21,7 @@ opt Call to Redis
     end
 end
 opt Call to RabbitMQ
-    ref over RabbitMQ
+    ref over Backend
         RabbitMQ: Produce
     end
 end
@@ -69,6 +69,7 @@ return String Response
 participant AnyBackendClass << (C,#ADD1B2) >>
 participant "RabbitMQ" as rabbitmq
 participant RecipeImageConsumer  << (C,#ADD1B2) >>
+participant ImageGenerationAdapter << (C,#ADD1B2) >>
 participant "Database" as db
 participant "ImageGeneration API" as imageGenerationApi
 
@@ -77,8 +78,11 @@ activate rabbitmq
 AnyBackendClass -> rabbitmq: Message
 rabbitmq -> RecipeImageConsumer: Message
 activate RecipeImageConsumer
-RecipeImageConsumer -> imageGenerationApi: API call
+RecipeImageConsumer -> ImageGenerationAdapter: generateImage
+activate ImageGenerationAdapter
+ImageGenerationAdapter -> imageGenerationApi: API call
 activate imageGenerationApi
+return Image
 return Image
 RecipeImageConsumer -> db: Save image
 activate db
@@ -89,6 +93,7 @@ rabbitmq -> AnyBackendClass: Image
 
 @enduml
 ```
+![](media/sequence/backendImageGenerator.png)
 ## Backend calls Database
 ```plantuml
 @startuml
