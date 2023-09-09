@@ -15,6 +15,16 @@ opt Call to Database
         Database: Call to Database
     end
 end
+opt Call to Redis
+    ref over Backend
+        Redis: Call to Redis
+    end
+end
+opt Call to RabbitMQ
+    ref over Backend
+        RabbitMQ: Produce
+    end
+end
 opt Call to Chat GPT API
     ref over Backend
         Chat GPT API: Call to Chat GPT API
@@ -57,30 +67,61 @@ return String Response
 ```plantuml
 @startuml
 participant AnyBackendClass << (C,#ADD1B2) >>
-participant ImageGeneratorAdapter  << (C,#ADD1B2) >>
+participant "RabbitMQ" as rabbitmq
+participant RecipeImageConsumer  << (C,#ADD1B2) >>
+participant ImageGenerationAdapter << (C,#ADD1B2) >>
+participant "Database" as db
 participant "ImageGeneration API" as imageGenerationApi
 
-AnyBackendClass -> ImageGeneratorAdapter: Description
-activate ImageGeneratorAdapter
-ImageGeneratorAdapter -> imageGenerationApi: Call to API with description
+activate AnyBackendClass
+activate rabbitmq
+AnyBackendClass -> rabbitmq: Message
+rabbitmq -> RecipeImageConsumer: Message
+activate RecipeImageConsumer
+RecipeImageConsumer -> ImageGenerationAdapter: generateImage
+activate ImageGenerationAdapter
+ImageGenerationAdapter -> imageGenerationApi: API call
 activate imageGenerationApi
-return Response
-return Image Reference
+return Image
+return Image
+RecipeImageConsumer -> db: Save image
+activate db
+return Image
+return Image
+rabbitmq -> AnyBackendClass: Image
+
+
 @enduml
 ```
+![](media/sequence/backendImageGenerator.png)
 ## Backend calls Database
 ```plantuml
 @startuml
 participant Backend
+participant Redis
 participant Hibernate
 participant Database
 
-Backend -> Hibernate: Request for data
-activate Hibernate
-Hibernate -> Database: SQL query
-activate Database
-return Response
-return Data
+alt Request for recipe
+    Backend -> Redis: Request for recipe
+    activate Redis
+    return Response
+    opt Recipe not found
+        Backend -> Hibernate: Request for data
+        activate Hibernate
+        Hibernate -> Database: SQL query
+        activate Database
+        return Response
+        return Data
+    end
+else Request for another data
+    Backend -> Hibernate: Request for data
+    activate Hibernate
+    Hibernate -> Database: SQL query
+    activate Database
+    return Response
+    return Data
+end
 @enduml
 ```
 ![](media/sequence/backendDatabase.png)
@@ -113,12 +154,12 @@ return Response
 @startuml
 participant Frontend as fe
 participant Backend as be
-participant Database as db
+participant Redis as redis
 
 fe -> be: Request for recommendations
 activate be
-be -> db: SQL query
-activate db
+be -> redis: SQL query
+activate redis
 return Response
 return Data
 @enduml

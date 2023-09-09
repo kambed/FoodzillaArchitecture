@@ -11,6 +11,8 @@
 !include DEVICONS2/flask_original.puml
 !include DEVICONS2/graphql.puml
 !include DEVICONS2/mysql.puml
+!include DEVICONS2/redis.puml
+!include ../media/rabbitmq.puml
 !includeurl ICONURL/font-awesome/server.puml
 
 LAYOUT_WITH_LEGEND()
@@ -38,19 +40,29 @@ Container_Boundary(c7, Chat GPT API) {
 Container_Boundary(c8, Recommendation module) {
     Component_Ext(recommentationModule,"Communication with BE", "flask", "Recommendation module module to backend communication", "flask_original")
 }
+Container_Boundary(c9, "redis") {
+    Component_Ext(redis,"redis", $sprite="redis")
+}
+Container_Boundary(c10, "rabbitmq") {
+    Component_Ext(rabbitmq,"rabbitmq", $sprite="rabbitmq")
+}
 
 Rel(febecommunicationAndroid, beGraphQl, "GraphQL")
 Rel(febecommunicationiOS, beGraphQl, "GraphQL")
 
+Rel_L(be, rabbitmq, "AMQL")
+
+Rel_U(be, redis, "Redis")
+
 Rel(beGraphQl, be, "Uses")
 
-Rel_L(be, beHibernate, "Uses")
-Rel_U(beHibernate, db, "SQL")
+Rel_R(be, beHibernate, "Uses")
+Rel_R(beHibernate, db, "SQL")
 
 Rel(be, imageGenerationApi, "REST")
 Rel(be, chatGptApi, "REST")
 
-Rel_L(be, recommentationModule, "REST")
+Rel(be, recommentationModule, "REST")
 
 @enduml
 ```
